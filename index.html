@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Carta San Valentín</title>
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#f7c6d0;
+  font-family:Arial, sans-serif;
+  overflow:hidden;
+}
+
+.background-title{
+  position:absolute;
+  top:10%;
+  width:100%;
+  text-align:center;
+  font-size:56px;
+  font-weight:900;
+  letter-spacing:5px;
+  color:rgba(255,255,255,0.6);
+  z-index:0;
+}
+
+.container{
+  position:relative;
+  width:320px;
+  height:360px;
+  overflow:hidden; /* carta escondida al inicio */
+  z-index:1;
+}
+
+.envelope{
+  position:absolute;
+  inset:0;
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  z-index:2;
+}
+
+.flap{
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:50%;
+  background:#eee;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;
+  transition:transform .8s ease;
+  z-index:3;
+}
+
+.flap.open{
+  transform:rotateX(180deg);
+}
+
+.heart{
+  position:absolute;
+  top:48%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:36px;
+  z-index:5;
+  cursor:pointer;
+}
+
+.letter{
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translate(-50%, 110%); /* totalmente dentro */
+  width:280px;
+  height:300px;
+  background:#fff;
+  border-radius:10px;
+  padding:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+  overflow-y:auto;
+  transition:transform .9s ease;
+  z-index:4;
+}
+
+.letter.open{
+  transform:translate(-50%, -20%);
+}
+
+.title{
+  text-align:center;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:12px;
+}
+
+@media (max-width:430px){
+  .background-title{
+    font-size:38px;
+    top:5%;
+    letter-spacing:3px;
+  }
+
+  .container{
+    transform:scale(0.92);
+  }
+
+  .letter{
+    width:90%;
+    height:65vh;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="background-title">SAN VALENTÍN</div>
+
+<div class="container">
+  <div class="letter" id="letter">
+    <h2 class="title">Mi princesa hermosa</h2>
+    <p>
+      Hago esta carta porque sé que a tu lado todo es mejor, mis días son más felices, encontré sentido, razón para estar y, como te imaginarás, eres tú. Y como ya te he dicho, siempre fuiste tú. No necesito un día especial para quererte, pero este día me parece una excusa perfecta para recordarte todo lo que significas para mí, que es mucho.
+      <br><br>
+      Recuerdo cada recreo, cada salida, cada te amo, cada mirada donde no decíamos nada, pero sabíamos exactamente qué estábamos diciendo y lo confirmábamos con la sonrisa. Esa sonrisa que quería que hagas para que te enamores de mí, sin querer eso fue lo que más me volvió loco por ti.
+      <br><br>
+      No hablo de tus ojos ni de tu interior porque no acabaría, pero resumidamente eres perfecta, mi amor. Eres la mujer de mis sueños, la niña con la que quiero todo y que, si Diosito quiere, lo lograremos porque somos un equipo.
+      <br><br>
+      <strong>¿Quieres ser mi San Valentín?</strong>
+    </p>
+  </div>
+
+  <div class="envelope"></div>
+  <div class="flap" id="flap"></div>
+  <div class="heart" onclick="openLetter()">❤️</div>
+</div>
+
+<script>
+function openLetter(){
+  const letter = document.getElementById('letter');
+  const flap = document.getElementById('flap');
+  const heart = document.querySelector('.heart');
+  const container = document.querySelector('.container');
+
+  container.style.overflow = 'visible';
+  letter.classList.add('open');
+  flap.classList.add('open');
+  if(heart) heart.style.display = 'none';
+}
+</script>
+
+</body>
+</html>
